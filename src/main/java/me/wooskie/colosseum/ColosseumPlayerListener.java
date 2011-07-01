@@ -21,6 +21,7 @@ public class ColosseumPlayerListener extends PlayerListener{
 		colosseumMonitor = new ColosseumMonitor( plugin );
 	}
 	
+        @Override
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		
 		// If a block is right clicked and it is a registered
@@ -39,12 +40,14 @@ public class ColosseumPlayerListener extends PlayerListener{
 		}
 	}
 	
+        @Override
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		if (plugin.roster.containsKey(event.getPlayer())) {
 			colosseumCommands.PlayerQuit(event.getPlayer());
 		}
 	}
 	
+        @Override
 	public void onPlayerDropItem(PlayerDropItemEvent event) {
 		if (plugin.roster.containsKey(event.getPlayer())) {
 			colosseumMonitor.DropItem(event.getPlayer(), event);

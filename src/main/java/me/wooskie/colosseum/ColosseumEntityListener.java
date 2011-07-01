@@ -21,6 +21,7 @@ public class ColosseumEntityListener extends EntityListener{
 		plugin = parent;
 	}
 
+        @Override
 	public void onEntityDeath(EntityDeathEvent event) {
 		
 		// Aborts script if colosseum not in use:
@@ -61,22 +62,24 @@ public class ColosseumEntityListener extends EntityListener{
 	     PlayerDeathRunnable(Player player) {
 	       this.player = player;
 	     }
+            @Override
 	     public void run() {
 	    	 Colosseum.colosseumCommands.PlayerDeath(player);
 	     }
 	  }
 	
+        @Override
 	public void onEntityDamage(EntityDamageEvent event) {
 		Entity entity = event.getEntity();
 		if (plugin.roster.containsKey(entity)) {
 			if (event instanceof EntityDamageByProjectileEvent) {
-	        	EntityDamageByProjectileEvent edbpe = (EntityDamageByProjectileEvent) event;
-	        	if (edbpe.getProjectile() instanceof Arrow) {
-	        		event.setDamage(3);
-		        }
-	        } else if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
-	        	event.setDamage(6);
-	        }
+                                EntityDamageByProjectileEvent edbpe = (EntityDamageByProjectileEvent) event;
+                                if (edbpe.getProjectile() instanceof Arrow) {
+                                        event.setDamage(3);
+                                }
+                        } else if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+                                event.setDamage(6);
+                        }
 		}
     }
 	
